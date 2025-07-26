@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "`social_auth`")
+@Table(name = "`social_auths`")
 @Getter
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

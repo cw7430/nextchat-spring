@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "`native_auth`")
+@Table(name = "`native_auths`")
 @Getter
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

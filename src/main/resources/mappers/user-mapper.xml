@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.next.chat.auth.mapper.UserMapper">
+    <select
+            id="findUserByUserIdForNativeSignIn"
+            parameterType="com.next.chat.auth.dto.outer.request.SignInOuterRequestDto"
+            resultType="com.next.chat.auth.dto.inner.response.SignInInnerResponseDto"
+    >
+        <![CDATA[
+            SELECT
+                `a`.`user_id` AS `userId`, `b`.`password`, `a`.`authority_level` AS `authorityLevel`
+            FROM
+                `users` `a`
+            JOIN
+                `native_auths` `b`
+            ON
+                `a`.`user_idx` = `b`.`user_idx`
+            WHERE
+                `a`.`user_id` = #{userId}
+        ]]>
+    </select>
+</mapper>
