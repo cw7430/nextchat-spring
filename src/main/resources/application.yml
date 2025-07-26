@@ -20,10 +20,7 @@ spring:
         dialect: org.hibernate.dialect.MySQL8Dialect
         default_schema: next_chat
 
-jwt:
-  access:
-    secret: ser6g5WEQrEfgg4h8sth4IHI5634eeg5se5EWFT234EG7ETRWer4t
-    expiration: 300000
-  refresh:
-    secret: dtJ45fju123445YRJPKJ6745wrtge53123JBf4D6HHJfgoEgtydS
-    expiration: 604920000
+mybatis:
+  mapper-locations: classpath:mappers/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
