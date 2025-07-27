@@ -1,17 +1,23 @@
 package com.next.chat.security.jwt;
 
 import com.next.chat.auth.entity.User;
+import com.next.chat.common.code.ResponseCode;
+import com.next.chat.common.exception.CustomException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.security.Key;
 import java.util.Date;
+import java.util.UUID;
 
 @Component
 public class JwtProvider {
@@ -36,25 +42,29 @@ public class JwtProvider {
     }
 
     // 1. JWT 생성
-    public String generateAccessToken(User user) {
+    public String generateAccessToken(String userId, String authorityLevel) {
+        String jti = UUID.randomUUID().toString();
         Date now = new Date();
         Date expiry = new Date(now.getTime() + accessTokenExpireTime);
 
         return Jwts.builder()
-                .setSubject(user.getUserId())
-                .claim("authorityLevel", user.getAuthorityLevel())
+                .setId(jti)
+                .setSubject(userId)
+                .claim("authorityLevel", authorityLevel)
                 .setIssuedAt(now)
                 .setExpiration(expiry)
                 .signWith(accessKey, SignatureAlgorithm.HS256)
                 .compact();
     }
 
-    public String generateRefreshToken(User user) {
+    public String generateRefreshToken(String userId) {
+        String jti = UUID.randomUUID().toString();
         Date now = new Date();
         Date expiry = new Date(now.getTime() + refreshTokenExpireTime);
 
         return Jwts.builder()
-                .setSubject(user.getUserId())
+                .setId(jti)
+                .setSubject(userId)
                 .setIssuedAt(now)
                 .setExpiration(expiry)
                 .signWith(refreshKey, SignatureAlgorithm.HS256)
@@ -103,7 +113,7 @@ public class JwtProvider {
                 .getBody();
     }
 
-    // 4. 정보 추출
+    // 4. 토큰에서 정보 추출
     public long getAccessTokenExpiration(String token) {
         Claims claims = getAccessClaims(token);
         return claims.getExpiration().getTime();
@@ -126,4 +136,34 @@ public class JwtProvider {
         return getAccessClaims(token).get("authorityLevel", String.class);
     }
 
+    // 5. 토큰 추출
+    public String extractAccessTokenFromHeader(HttpServletRequest request) {
+        String authorizationHeader = request.getHeader("Authorization");
+
+        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+            return authorizationHeader.substring(7); // "Bearer " 이후 토큰만 추출
+        }
+
+        return null;
+    }
+
+    public String extractRefreshTokenFromCookie(HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if ("refreshToken".equals(cookie.getName())) {
+                    return cookie.getValue();
+                }
+            }
+        }
+        return null;
+    }
+
+    public String extractUserIdFromRequest(HttpServletRequest request) {
+        String token = extractAccessTokenFromHeader(request);
+        if (!StringUtils.hasText(token) || !validateAccessToken(token)) {
+            throw new CustomException(ResponseCode.UNAUTHORIZED);
+        }
+        return getUserIdFromAccessToken(token);
+    }
 }

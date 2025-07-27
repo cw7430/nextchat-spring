@@ -37,6 +37,7 @@ public class User {
     )
     private String authorityLevel = "1";
 
+
     // NATIVE - 가입회원, SOCIAL - Oauth 회원, CROSS - 복합회원(가입 + 소셜계정연동)
     @Column(
             name = "`auth_method`",

@@ -1,15 +1,27 @@
 package com.next.chat.auth.service;
 
+import com.next.chat.auth.dto.service.TokenServiceDto;
 import com.next.chat.auth.mapper.AuthMapper;
-import com.next.chat.auth.repository.NativeAuthRepository;
-import com.next.chat.auth.repository.UserRepository;
+import com.next.chat.security.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class AuthService {
-    private final UserRepository userRepository;
-    private final NativeAuthRepository nativeAuthRepository;
     private final AuthMapper authMapper;
+
+    private static TokenServiceDto createAccessToken(JwtProvider jwtProvider, String userId, String authorityLevel) {
+        String token = jwtProvider.generateAccessToken(userId, authorityLevel);
+        long expiresAt = jwtProvider.getAccessTokenExpiration(token);
+        return new TokenServiceDto(token, expiresAt);
+    }
+
+    private static TokenServiceDto createRefreshToken(JwtProvider jwtProvider, String userId) {
+        String token = jwtProvider.generateRefreshToken(userId);
+        long expiresAt = jwtProvider.getRefreshTokenExpiration(token);
+        return new TokenServiceDto(token, expiresAt);
+    }
+
+
 }

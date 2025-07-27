@@ -6,4 +6,5 @@ import lombok.Getter;
 public class SignInRequestDto {
     private String userId;
     private String password;
+    private boolean isAuto;
 }

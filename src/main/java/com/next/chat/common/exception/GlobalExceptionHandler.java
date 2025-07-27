@@ -26,11 +26,7 @@ public class GlobalExceptionHandler {
         log.error("Validation failed: {}", errorMessage);
 
         return new ResponseEntity<>(
-                new ApiResponse<>(
-                        ResponseCode.VALIDATION_ERROR.getCode(),
-                        errorMessage,
-                        null
-                ),
+                ApiResponse.fail(ResponseCode.VALIDATION_ERROR, errorMessage),
                 ResponseCode.VALIDATION_ERROR.getStatus()
         );
     }
@@ -53,6 +49,7 @@ public class GlobalExceptionHandler {
     }
 
     // 기타 서버 오류
+    @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiResponse<Void>> handleGeneralException(Exception ex) {
         log.error("Unhandled exception occurred", ex);
         return new ResponseEntity<>(
