@@ -1,7 +1,7 @@
-package com.next.chat.auth.mapper;
+package com.next.chat.mapper;
 
-import com.next.chat.auth.dto.request.SignInRequestDto;
-import com.next.chat.auth.dto.result.SignInResultDto;
+import com.next.chat.dto.request.auth.SignInRequestDto;
+import com.next.chat.dto.result.auth.SignInResultDto;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

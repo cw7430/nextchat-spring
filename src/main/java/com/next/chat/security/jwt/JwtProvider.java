@@ -1,6 +1,5 @@
 package com.next.chat.security.jwt;
 
-import com.next.chat.auth.entity.User;
 import com.next.chat.common.code.ResponseCode;
 import com.next.chat.common.exception.CustomException;
 import io.jsonwebtoken.Claims;

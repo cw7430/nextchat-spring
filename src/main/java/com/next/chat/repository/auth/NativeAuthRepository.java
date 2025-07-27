@@ -1,6 +1,6 @@
-package com.next.chat.auth.repository;
+package com.next.chat.repository.auth;
 
-import com.next.chat.auth.entity.NativeAuth;
+import com.next.chat.entity.auth.NativeAuth;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface NativeAuthRepository extends JpaRepository<NativeAuth, Long> {

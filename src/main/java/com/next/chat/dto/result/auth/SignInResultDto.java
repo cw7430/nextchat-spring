@@ -1,4 +1,4 @@
-package com.next.chat.auth.dto.result;
+package com.next.chat.dto.result.auth;
 
 import lombok.Getter;
 import lombok.Setter;

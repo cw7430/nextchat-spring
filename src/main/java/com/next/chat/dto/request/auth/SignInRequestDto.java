@@ -1,4 +1,4 @@
-package com.next.chat.auth.dto.request;
+package com.next.chat.dto.request.auth;
 
 import lombok.Getter;
 

@@ -1,6 +1,6 @@
 package com.next.chat.security.config;
 
-import com.next.chat.auth.endpoint.AuthEndpoint;
+import com.next.chat.common.endpoint.auth.AuthEndpoint;
 import com.next.chat.security.jwt.JwtAuthenticationFilter;
 import com.next.chat.security.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;

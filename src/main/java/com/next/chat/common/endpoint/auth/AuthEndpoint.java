@@ -1,5 +1,4 @@
-package com.next.chat.auth.endpoint;
-
+package com.next.chat.common.endpoint.auth;
 
 import com.next.chat.common.endpoint.EndPoint;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package com.next.chat.auth.entity;
+package com.next.chat.entity.auth;
 
 import jakarta.persistence.*;
 import lombok.*;

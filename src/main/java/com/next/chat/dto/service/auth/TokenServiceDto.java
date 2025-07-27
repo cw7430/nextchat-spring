@@ -1,4 +1,4 @@
-package com.next.chat.auth.dto.service;
+package com.next.chat.dto.service.auth;
 
 public record TokenServiceDto(String token, long expiresAt) {
 }

@@ -1,4 +1,4 @@
-package com.next.chat.auth.dto.response;
+package com.next.chat.dto.response.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

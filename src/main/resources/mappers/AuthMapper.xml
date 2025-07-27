@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.next.chat.auth.mapper.AuthMapper">
+<mapper namespace="com.next.chat.mapper.AuthMapper">
     <select
             id="findUserByUserIdForNativeSignIn"
-            parameterType="com.next.chat.auth.dto.request.SignInRequestDto"
-            resultType="com.next.chat.auth.dto.result.SignInResultDto"
+            parameterType="com.next.chat.dto.request.auth.SignInRequestDto"
+            resultType="com.next.chat.dto.result.auth.SignInResultDto"
     >
         <![CDATA[
             SELECT

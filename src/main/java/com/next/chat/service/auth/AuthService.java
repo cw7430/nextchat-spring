@@ -1,7 +1,7 @@
-package com.next.chat.auth.service;
+package com.next.chat.service.auth;
 
-import com.next.chat.auth.dto.service.TokenServiceDto;
-import com.next.chat.auth.mapper.AuthMapper;
+import com.next.chat.dto.service.auth.TokenServiceDto;
+import com.next.chat.mapper.AuthMapper;
 import com.next.chat.security.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

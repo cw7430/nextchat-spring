@@ -1,6 +1,6 @@
-package com.next.chat.auth.repository;
+package com.next.chat.repository.auth;
 
-import com.next.chat.auth.entity.SocialAuth;
+import com.next.chat.entity.auth.SocialAuth;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface SocialAuthRepository extends JpaRepository<SocialAuth, Long> {
