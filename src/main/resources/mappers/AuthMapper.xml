@@ -3,12 +3,12 @@
 <mapper namespace="com.next.chat.mapper.AuthMapper">
     <select
             id="findUserByUserIdForNativeSignIn"
-            parameterType="com.next.chat.dto.request.auth.SignInRequestDto"
-            resultType="com.next.chat.dto.result.auth.SignInResultDto"
+            parameterType="com.next.chat.dto.request.auth.NativeSignInRequestDto"
+            resultType="com.next.chat.dto.result.auth.NativeSignInResultDto"
     >
         <![CDATA[
             SELECT
-                `a`.`user_id` AS `userId`, `b`.`password`, `a`.`authority_level` AS `authorityLevel`
+                `a`.`user_id` AS `userId`, `b`.`password`, `a`.`authority_level` AS `authorityLevel`, `a`.`auth_method` AS `authMethod`
             FROM
                 `users` `a`
             JOIN

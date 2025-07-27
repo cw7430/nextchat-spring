@@ -5,8 +5,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class SignInResultDto {
+public class NativeSignInResultDto {
     private String userId;
     private String password;
     private String authorityLevel;
+    private String authMethod;
 }

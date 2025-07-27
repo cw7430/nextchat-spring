@@ -1,10 +1,12 @@
 package com.next.chat.mapper;
 
-import com.next.chat.dto.request.auth.SignInRequestDto;
-import com.next.chat.dto.result.auth.SignInResultDto;
+import com.next.chat.dto.request.auth.NativeSignInRequestDto;
+import com.next.chat.dto.result.auth.NativeSignInResultDto;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.Optional;
 
 @Mapper
 public interface AuthMapper {
-    SignInResultDto findUserByUserIdForNativeSignIn(SignInRequestDto signInRequestDto);
+    Optional<NativeSignInResultDto> findUserByUserIdForNativeSignIn(NativeSignInRequestDto nativeSignInRequestDto);
 }
